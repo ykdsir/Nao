@@ -1,5 +1,4 @@
-# encoding=utf-8
-
+# -*- coding: utf-8 -*-
 from naoqi import ALProxy
 import numpy,time,ftplib,globalVar
 import vision_definitions
@@ -72,10 +71,14 @@ class Motion:
         print 'end recording'
         self.__getfile(filename,filePath)
 
+    # ftp 获取音频
     def __getfile(self,filename,filepath):
         f = open(filepath,"wb")
         self.ftp.retrbinary("RETR %s" % filename,f.write,8192)
         f.close()
+
+
+    def getfile(self):
         pass
     #show poses
     def pose(self,mode):

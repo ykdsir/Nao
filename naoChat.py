@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
 import aiml,os
-from tools import textTools as txtPro
-from tools import query
+from tools import textTools
+from tools import query,voice2txt
 
-def chat(message):
+
+def getVoiceMsg(motion):
+    motion.recordSound("record.wav", "./sound/sound.wav")
+    txt = voice2txt.wav2txt('./sound/sound.wav')
+    return txt
+
+
+
+
+def chat(motion):
     chat_path = './conversation/'
     os.chdir(chat_path)
 
@@ -18,8 +27,12 @@ def chat(message):
         robot.saveBrain("brain.brn")
 
     # message = raw_input("Enter your message>> ")
+    message = getVoiceMsg(motion)
+    if message == None:
+        motion.say(u'我听不懂')
+        return
     respond = ''
-    if message == "quit":
+    if message == "quit":#仅用于测试时
         exit()
     elif message == "save":
         robot.saveBrain('brain.brn')
@@ -28,14 +41,20 @@ def chat(message):
         print respond
 
     if respond.__contains__('#'):
-        respond = ask(message)
+        respond = ask(message,motion)
     print 'chat respond:' + respond
     return respond
 
 #问答系统
-def ask(question):
-    queryWords = txtPro.wordSegment(question)
+def ask(question,motion):
+    str = textTools.subReplace(question)
+    queryWords = textTools.wordSegment(str)
     print 'query words :  '+ queryWords.encode('utf8')
     result = query.query(queryWords)
+
     print 'result: ', result
-    pass
+    if result is None:
+        motion.say(u'我听不懂')
+    else:
+        result = textTools.subReplace(result)
+        motion.say(result)

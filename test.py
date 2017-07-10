@@ -4,13 +4,15 @@
 import sys
 from naoMotion import Motion
 import cv2
-from tools import htmlTools,textTools,query,voice2txt
+from tools import textTools,query,voice2txt
+from naoqi import ALBroker
+import argparse,time
 
-global motion
+IP = '101.5.211.149'
+PORT = 9559
+motion = Motion(IP,PORT)
 
 def testSound(IP,PORT):
-    global motion
-    motion = Motion(IP,PORT)
 
     motion.recordSound("record.wav","./sound/sound.wav")
     txt = voice2txt.wav2txt('./sound/sound.wav')
@@ -22,26 +24,36 @@ def testSound(IP,PORT):
 def testHtml(str):
     # str = '清华大学校长是？'
     # str = u'清华大学的校长是'
+    if str is None:
+        motion.say(u'我听不懂')
+        return
     str = textTools.subReplace(str)
     queryWords = textTools.wordSegment(str)
     print 'query words :  '+ queryWords.encode('utf8')
     result = query.query(queryWords)
-    print 'result: ', result
-    motion.say(result)
 
-def ask(IP,PORT):
+    print 'result: ', result
+    if result is None:
+        motion.say(u'我听不懂')
+    else:
+        result = textTools.subReplace(result)
+        motion.say(result)
+
+def ask():
     txt = testSound(IP,PORT)
+    # testHtml(u'中国的首都是哪里')
     testHtml(txt)
 
-def takePics(IP,PORT):
-    global motion
-    motion = Motion(IP,PORT)
+def takePics():
     pics = motion.takePic()
     cv2.imwrite("./pics/hu7.jpg",pics)
-
+#
 if __name__ == '__main__':
-    IP = sys.argv[1]
-    PORT = 9559
+    # global IP
+    # IP = sys.argv[1]
+    # global PORT
+    # PORT = 9559
     # testSound(IP, PORT)
-    ask(IP,PORT)
-    # takePics(IP,PORT)
+    ask()
+    # takePics()
+

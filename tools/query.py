@@ -21,6 +21,7 @@ def query(queryStr):
     # search in baidu
     baidu = htmlTools.get_html_baidu('https://www.baidu.com/s?wd=' + quote(queryWords.encode('utf8')))
     results = baidu.find(id=1)
+    assert results is not None
     if results.attrs.has_key('mu'):
         # ##############################
         # 百度知识图谱
@@ -73,7 +74,6 @@ def query(queryStr):
             zhidao_soup = htmlTools.get_html_zhidao(url)
             r = zhidao_soup.find(class_='bd answer').find('pre')
             return (r.get_text().strip().encode('utf8'))
-            # flag = True
 
 
         if results.find("h3") != None:
@@ -90,7 +90,6 @@ def query(queryStr):
                     if r != None:
                         r = r.find('pre')
                         return (r.get_text().strip().encode('utf8'))
-                    # flag = 1
 
         # 百度百科
         if results.find("h3").find("a").get_text().__contains__(u"百度百科"):
@@ -111,12 +110,16 @@ def query(queryStr):
     # 判断是否在Bing的知识图谱中
     # bingbaike = soup_bing.find(class_="b_xlText b_emphText")
     bingbaike = soup_bing.find(class_="bm_box")
+    flag = 0
     if bingbaike != None:
-        if bingbaike.find_all(class_="b_vList")[1] != None:
-            if bingbaike.find_all(class_="b_xlText b_emphText") != None:
+        if bingbaike.find_all(class_ = 'b_xlText b_emphText'):
+            print "Bing知识图谱找到答案"
+            return (bingbaike.find_all(class_="b_xlText b_emphText")[0].get_text())
+        if bingbaike.find_all(class_="b_vList")[3] != None:
+            # print bingbaike.find_all(class_="b_vList")[0]
+            if bingbaike.find_all(class_="b_vList")[3].find("li") != None:
                 print "Bing知识图谱找到答案"
-                flag = 1
-                return (bingbaike.find_all(class_="b_xlText b_emphText")[0].get_text())
+                return (bingbaike.find_all(class_="b_vList")[3].get_text())
                 # print "====="
                 # print answer
                 # print "====="
