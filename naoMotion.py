@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import math
 from naoqi import ALProxy
 import numpy,time,ftplib,globalVar
 import vision_definitions
@@ -18,6 +19,7 @@ class Motion:
             self.tts = ALProxy("ALTextToSpeech",ip,port)
             self.audioDevice = ALProxy('ALAudioDevice',ip,port)
             self.record = ALProxy('ALAudioRecorder',ip,port)
+            self.postureProxy = ALProxy("ALRobotPosture", ip, port)
             resolution = vision_definitions.kVGA
             colorSpace = vision_definitions.kRGBColorSpace
             self.fps = 15
@@ -25,6 +27,8 @@ class Motion:
             # print self.videoClient
             # in case of camera subscribe overflow
             assert self.videoClient is not None
+            self.motionProxy.wakeUp()
+            self.postureProxy.goToPosture("StandInit", 0.5)
         except Exception, e:
             print "Error when creating ALPhotoCapture proxy:"
             print str(e)
@@ -78,28 +82,51 @@ class Motion:
         f.close()
 
 
-    def getfile(self):
+    def say(self,string):
+        # string  = "1+1 = 2"
+        self.tts.say(string.encode('utf8'))
+
+    # for instruction
+    def turnleft(self):
+        x = 0
+        y = 0
+        theta = math.pi / 2
+        self.motionProxy.moveTo(x, y, theta)
+
+
+    def turnright(self):
+        x = 0
+        y = 0
+        theta = - math.pi / 2
+        self.motionProxy.moveTo(x, y, theta)
+
+
+    def turnback(self):
+        x = 0
+        y = 0
+        theta = math.pi
+        self.motionProxy.moveTo(x, y, theta)
+
+
+    def goahead(self):
+        x = 1
+        y = 0
+        self.motionProxy.moveTo(x,y,0)
+
+    def stop(self):
+        self.motionProxy.stopMove()
+
+
+    def sitdown(self):
+        self.postureProxy.goToPosture("Sit", 1.0)
+
+    def standup(self):
+        self.postureProxy.goToPosture("Stand",1.0)
+
+    def dance(self):
         pass
     #show poses
     def pose(self,mode):
         pass
-
-    def dance(self):
-        pass
-
-    def say(self,string):
-        # string  = "1+1 = 2"
-        self.tts.say(string.encode("utf8"))
-
-    # for switch robot functions: face reconginition, chat(ask question?, follow instructions
-    def touchHand(self):
-        pass
-
-    # for chat with robot and give orders
-    # voice recording lasts only (5) seconds ( for now )
-    def touchHead(self):
-        pass
-
-
 
 

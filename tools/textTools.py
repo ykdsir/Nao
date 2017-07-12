@@ -20,7 +20,9 @@ def wordSegment(text):
 
 # replace puncation with space
 def subReplace(line):
-    regex = re.compile(ur"[^\u4e00-\u9fa5a-zA-Z0-9_-]")
+    print 'line ', line
+    print type(line)
+    regex = re.compile(ur"[^\u4e00-\u9fa5a-zA-Z0-9_$#-]")
     return regex.sub(' ',line)
 
 # tag and value

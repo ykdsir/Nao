@@ -1,4 +1,4 @@
-import sys
+import os
 import time
 
 from naoqi import ALProxy
@@ -11,7 +11,7 @@ from naoMotion import Motion
 from tools import voice2txt
 
 # Global variable to store the ReactToTouch module instance
-reactToTouch = None
+ReactToTouch = None
 memory = None
 count = 0
 right = 0
@@ -20,7 +20,7 @@ left = 0
 FACE_RECO_STATE = 0
 CHAT_STATE = 1
 
-currentState = FACE_RECO_STATE
+currentState = CHAT_STATE
 motion = None
 
 
@@ -76,6 +76,7 @@ class ReactToTouch(ALModule):
             global currentState,motion
             if currentState == CHAT_STATE:
                 naoChat.chat(motion)
+                os.chdir('../')
             else:
                 naoVision.faceRecongnition(motion)
         #Subscribe again to the event
@@ -100,7 +101,6 @@ class ReactToTouch(ALModule):
     def onleftTouched(self, strVarName, value):
         """ This will be called each time a touch
         is detected.
-
         """
         # Unsubscribe to the event when talking,
         # to avoid repetitions
@@ -134,8 +134,8 @@ def main(ip, port):
     motion = Motion(ip,port)
 
 
-    global reactToTouch
-    reactToTouch = ReactToTouch("ReactToTouch")
+    global ReactToTouch
+    ReactToTouch = ReactToTouch("ReactToTouch")
 
     try:
         while True:
@@ -149,7 +149,7 @@ def main(ip, port):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ip", type=str, default="101.5.211.149",
+    parser.add_argument("--ip", type=str, default="101.5.210.1",
                         help="Robot ip address")
     parser.add_argument("--port", type=int, default=9559,
                         help="Robot port number")

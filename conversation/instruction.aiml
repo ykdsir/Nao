@@ -1,0 +1,44 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- bye.aiml -->
+
+  <category>
+    <pattern>向后转</pattern>
+    <template>$2</template>
+  </category>
+
+  <category>
+    <pattern>左转</pattern>
+    <template>$0</template>
+  </category>
+
+  <category>
+    <pattern>右转</pattern>
+    <template>$1</template>
+  </category>
+
+  <category>
+    <pattern>停止</pattern>
+    <template>$4</template>
+  </category>
+
+  <category>
+    <pattern>前进</pattern>
+    <template>$3</template>
+  </category>
+
+  <category>
+    <pattern>坐下</pattern>
+    <template>$5</template>
+  </category>
+
+  <category>
+    <pattern>起立</pattern>
+    <template>$6</template>
+  </category>
+
+  <category>
+    <pattern>跳舞</pattern>
+    <template>$7</template>
+  </category>
+
+</aiml>

@@ -14,6 +14,8 @@
             <learn>basic_chat.aiml</learn>
             <!-- 你可以在这里添加更多的aiml文件 -->
             <!--<learn>more_aiml.aiml</learn>-->
+            <learn>bye.aiml</learn>
+            <learn>instruction.aiml</learn>
         </template>
 
     </category>

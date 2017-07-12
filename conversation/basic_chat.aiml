@@ -13,7 +13,7 @@
     <template>
       <random>
         <li>不知道啊</li>
-        <li>纳尼？？? </li>
+        <li>纳尼？？？</li>
         <li>这我就不知道了</li>
         <li>。。。不知道额</li>
         <li>唔... 没人教我怎么回答... </li>
@@ -51,7 +51,7 @@
   <category><pattern>HELLO</pattern> <template><srai>你好</srai> </template>  </category>
   <category><pattern>HELLO *</pattern> <template><srai>你好</srai> </template>  </category>
   <category><pattern>* 你好</pattern> <template><srai>你好</srai> </template>  </category>
-
+  <category><pattern>您好</pattern> <template><srai>你好</srai> </template>  </category>
   <category>
     <pattern>你好 *</pattern>
     <template>
