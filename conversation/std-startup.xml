@@ -16,6 +16,9 @@
             <!--<learn>more_aiml.aiml</learn>-->
             <learn>bye.aiml</learn>
             <learn>instruction.aiml</learn>
+            <learn>funny.aiml</learn>
+            <learn>tools.aiml</learn>
+            <!--<learn>tuling.aiml</learn>-->
         </template>
 
     </category>

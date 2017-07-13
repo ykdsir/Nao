@@ -21,11 +21,11 @@ def chat(motion):
     # else:
     #     robot.bootstrap(learnFiles="std-startup.xml", commands="load aiml test1")
     #     robot.saveBrain("brain.brn")
-    message = raw_input("Enter your message>> ")
+    # message = raw_input("Enter your message>> ")
     # message = u'左转'
 
     # 语音识别出现无法识别的问题
-    # message = getVoiceMsg(motion).strip()
+    message = getVoiceMsg(motion)
     if message == None:
         motion.say(u'我听不懂')
         return
@@ -56,11 +56,12 @@ def chat(motion):
     motion.say(respond)
 #问答系统
 def ask(question,motion):
-    # str = textTools.subReplace(question)
-    str = question
+    print 'question:',question
+    str = textTools.subReplace(question)
+    # str = question
     print 'str', str
     queryWords = textTools.wordSegment(str)
-    print 'query words :  '+ queryWords.encode('utf8')
+    print 'query words :  '+ queryWords
     result = query.query(queryWords)
 
     print 'result: ', result
@@ -68,6 +69,7 @@ def ask(question,motion):
         motion.say(u'我听不懂')
     else:
         result = textTools.subReplace(result.decode('utf8'))
+        print result
         motion.say(result)
 
 def doInstruction(mode,motion):
@@ -80,7 +82,7 @@ def doInstruction(mode,motion):
     elif mode == '3':
         motion.goahead()
     elif mode == '4':
-        motion.stop()
+        motion.sing()
     elif mode == '5':
         motion.sitdown()
     elif mode == '6':

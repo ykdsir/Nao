@@ -38,10 +38,9 @@
     <template>
       <random>
         <li>你好，我是Nao，请多指教。</li>
-        <li>你好啊~</li>
         <li>Hi</li>
         <li>哈喽，你好</li>
-        <li>Hello~</li>
+        <li>我不好，嘤嘤嘤</li>
       </random>
     </template>
   </category>
@@ -104,6 +103,17 @@
   <category><pattern>晚安 *</pattern><template><srai>晚安</srai> </template>  </category>
   <category><pattern>* 晚安</pattern><template><srai>晚安</srai> </template>  </category>
 
+  <category>
+    <pattern>叫爸爸</pattern>
+    <template>
+      <random>
+        <li>儿子乖</li>
+        <li>我是你爸爸~</li>
+        <li>爸爸</li>
+      </random>
+    </template>
+  </category>
+  <category><pattern>我是你爸爸</pattern><template><srai>叫爸爸</srai> </template>  </category>
 
   <category>
     <pattern>句子长度过长</pattern>
@@ -116,3 +126,4 @@
     </template>
   </category>
 </aiml>
+

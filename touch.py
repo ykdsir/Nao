@@ -78,7 +78,7 @@ class ReactToTouch(ALModule):
                 naoChat.chat(motion)
                 os.chdir('../')
             else:
-                naoVision.faceRecongnition(motion)
+                naoVision.faceRecon(motion)
         #Subscribe again to the event
             memory.subscribeToEvent("MiddleTactilTouched","ReactToTouch","onheadTouched")
 
@@ -149,7 +149,7 @@ def main(ip, port):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ip", type=str, default="101.5.210.1",
+    parser.add_argument("--ip", type=str, default="101.5.211.138",
                         help="Robot ip address")
     parser.add_argument("--port", type=int, default=9559,
                         help="Robot port number")

@@ -17,7 +17,7 @@
   </category>
 
   <category>
-    <pattern>停止</pattern>
+    <pattern>唱歌</pattern>
     <template>$4</template>
   </category>
 
@@ -41,4 +41,9 @@
     <template>$7</template>
   </category>
 
+  <category><pattern>跳个舞*</pattern> <template><srai>跳舞</srai> </template>   </category>
+  <category><pattern>唱首歌*</pattern> <template><srai>唱歌</srai> </template>   </category>
+  <category><pattern>唱个歌*</pattern> <template><srai>唱歌</srai> </template>   </category>
+  <category><pattern>向左转*</pattern> <template><srai>左转</srai> </template>   </category>
+  <category><pattern>向右转*</pattern> <template><srai>右转</srai> </template>   </category>
 </aiml>

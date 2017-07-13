@@ -3,6 +3,7 @@
 import jieba,re,os
 import jieba.posseg as pseg
 
+delete = [u'多少',u'谁',u'几',u'的']
 
 # initialize jieba
 def jieba_initialize():
@@ -22,8 +23,11 @@ def wordSegment(text):
 def subReplace(line):
     print 'line ', line
     print type(line)
-    regex = re.compile(ur"[^\u4e00-\u9fa5a-zA-Z0-9_$#-]")
-    return regex.sub(' ',line)
+    regex = re.compile(ur"[^\u4e00-\u9fa5a-zA-Z0-9_$#%&+\-*/,.=]")
+    line = regex.sub(' ',line)
+    for x in delete:
+        line = line.replace(x,'')
+    return line
 
 # tag and value
 def postag(text):

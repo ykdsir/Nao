@@ -36,7 +36,7 @@ def testHtml(str):
     if result is None:
         motion.say(u'我听不懂')
     else:
-        result = textTools.subReplace(result)
+        result = textTools.subReplace(result.decode('utf8'))
         motion.say(result)
 
 def ask():
