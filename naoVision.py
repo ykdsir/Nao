@@ -6,6 +6,7 @@ from sklearn.mixture import GMM
 def faceRecon(motion):
     pics = motion.takePic()
     cv2.imwrite("./pics/pic.jpg", pics)
+    # cv2.matchShapes()
     imgs = ['./pics/pic.jpg']
     name = infer(imgs)
     print name

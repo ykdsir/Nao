@@ -3,24 +3,15 @@
 
 import htmlTools
 from urllib import quote
-import textTools
 
 def query(queryStr):
-    # querylist = []
-    # words = textTools.postag(queryStr)
-    # for i in words:
-    #     if i.flag.__contains__("n"):
-    #         querylist.append(i.word)
-    #
-    # queryWords = ' '.join(querylist)
-    # print 'query words:'
-    # print queryWords
-    # found = False
     queryWords = queryStr
     answers = []
     # search in baidu
     baidu = htmlTools.get_html_baidu('https://www.baidu.com/s?wd=' + quote(queryWords.encode('utf8')))
+    # print baidu
     results = baidu.find(id=1)
+    # print results
     assert results is not None
     if results.attrs.has_key('mu'):
         # ##############################
@@ -120,9 +111,6 @@ def query(queryStr):
             if bingbaike.find_all(class_="b_vList")[3].find("li") != None:
                 print "Bing知识图谱找到答案"
                 return (bingbaike.find_all(class_="b_vList")[3].get_text())
-                # print "====="
-                # print answer
-                # print "====="
     else:
         print "Bing知识图谱找不到答案"
         results = soup_bing.find(id="b_results")

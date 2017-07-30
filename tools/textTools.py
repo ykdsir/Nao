@@ -3,12 +3,12 @@
 import jieba,re,os
 import jieba.posseg as pseg
 
-delete = [u'多少',u'谁',u'几',u'的']
+delete = [u'多少',u'谁',u'几',u'的',u'哪里']
 
 # initialize jieba
-def jieba_initialize():
-    jieba.load_userdict(os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'/conversation/QAattrdic.txt')
-    jieba.initialize()
+# def jieba_initialize():
+#     jieba.load_userdict(os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'/conversation/QAattrdic.txt')
+#     jieba.initialize()
 
 
 # Segment words by jieba

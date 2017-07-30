@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-import aiml,os,globalVar
+import aiml,os,globalVar,sys
 from tools import textTools
 from tools import query,voice2txt
 from naoMotion import Motion
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 def getVoiceMsg(motion):
@@ -38,18 +40,18 @@ def chat(motion):
     #     robot.saveBrain('brain.brn')
     else:
         respond = robot.respond(message)
-        print respond
+        # print respond
+        # 对返回结果进行处理
         respond = textTools.subReplace(respond.decode('utf8'))
-        print respond
         print 'chat responce:' + respond
-
+    # 执行指令
     if respond.__contains__('$'):
         motion.say(u'好的')
         doInstruction(respond.replace('$',''),motion)
         return
 
+    # 进行问答
     if respond.__contains__('#NoMatchingTemplate'):
-        # print 'msg: ', message
         ask(message,motion)
         return
 
@@ -68,7 +70,7 @@ def ask(question,motion):
     if result is None:
         motion.say(u'我听不懂')
     else:
-        result = textTools.subReplace(result.decode('utf8'))
+        result = textTools.subReplace(result)
         print result
         motion.say(result)
 
@@ -88,5 +90,5 @@ def doInstruction(mode,motion):
     elif mode == '6':
         motion.standup()
     else:
-        motion.dance()
+        motion.total_dance()
 

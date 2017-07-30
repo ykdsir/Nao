@@ -1,6 +1,0 @@
-query words :  清华大学 校长 是
-<div class="op_exactqa_s_answer">
-<a href="http://www.baidu.com/link?url=8NA90JtWbavmWD73S4VGD7oBqHuQac4BRS4tBbUHaLfoXXPpOg2JbFf44IJpWntjbnuul0T3s2e_baG5PSwpj_" target="_blank">邱勇</a>
-</div>
-百度知识图谱找到答案
-邱勇

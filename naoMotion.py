@@ -3,7 +3,7 @@ import math,random
 from naoqi import ALProxy
 import numpy,time,ftplib,globalVar
 import vision_definitions
-
+import threading
 
 class Motion:
     #constructor
@@ -544,8 +544,18 @@ class Motion:
         else:
             self.dance2()
 
+    def total_dance(self):
+        thread_dance = threading.Thread(None, self.dance, None)
+        thread_dance.start()
+
+        thread_hello = threading.Thread(None, self.hello, None)
+        thread_hello.start()
+
+    def hello(self):
+        self.say("hello,I'm dancing")
+
     def sing(self):
-        self.motion.say('')
+        self.say('No,I don\' want to sing ')
 
     #show poses
     def pose(self,mode):

@@ -88,7 +88,74 @@
       </random>
     </template>
   </category>
+  
+  <category>
+    <pattern>你吃过了吗</pattern>
+    <template>
+      <random>
+        <li>我还没呢，你呢</li>
+        <li>你充过电了吗</li>
+		<li>今天的电味道不错</li>
+        <li>你见过机器人吃东西吗，没文化</li>
+      </random>
+    </template>
+  </category>
 
+  <category>
+    <pattern>帮我写作业吧</pattern>
+    <template>
+      <random>
+        <li>好好学习，天天向上哦</li>
+        <li>我要去告诉你老师</li>
+		<li>开个价吧</li>
+        <li>小学生作业so easy，不写</li>
+      </random>
+    </template>
+  </category>
+  
+  <category>
+    <pattern>我美吗</pattern>
+    <template>
+      <random>
+        <li>臭美</li>
+        <li>美美美，我最美</li>
+		<li>还行，就那样吧</li>
+      </random>
+    </template>
+  </category>
+  
+  <category>
+    <pattern>我喜欢你</pattern>ge
+    <template>
+      <random>
+        <li>我不喜欢你</li>
+        <li>你是个好人</li>
+		<li>我也喜欢我自己</li>
+        <li>给你个眼神自己体会</li>
+      </random>
+    </template>
+  </category>
+  
+  <category>
+    <pattern>早上好</pattern>
+    <template>
+      <random>
+        <li>太阳都晒屁屁了</li>
+        <li>goog morning</li>
+      </random>
+    </template>
+  </category>
+  
+  <category>
+    <pattern>你有点矮啊</pattern>
+    <template>
+      <random>
+        <li>走开，你个卖烧饼的</li>
+        <li>是比姚明矮一丢丢</li>
+      </random>
+    </template>
+  </category>
+  
   <category>
     <pattern>晚安</pattern>
     <template>
@@ -102,6 +169,7 @@
 
   <category><pattern>晚安 *</pattern><template><srai>晚安</srai> </template>  </category>
   <category><pattern>* 晚安</pattern><template><srai>晚安</srai> </template>  </category>
+  <category><pattern>*写作业*</pattern><template><srai>帮我写作业吧</srai> </template>  </category>
 
   <category>
     <pattern>叫爸爸</pattern>
@@ -113,7 +181,7 @@
       </random>
     </template>
   </category>
-  <category><pattern>我是你爸爸</pattern><template><srai>叫爸爸</srai> </template>  </category>
+  <category><pattern>我是你爸爸</pattern><template><srai>叫爸爸</srai> </template></category>
 
   <category>
     <pattern>句子长度过长</pattern>

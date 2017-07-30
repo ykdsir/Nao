@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
+import sys,os,aiml,globalVar
 from naoMotion import Motion
 import cv2
 from tools import textTools,query,voice2txt
@@ -10,8 +10,8 @@ import argparse,time
 
 IP = '101.5.211.149'
 PORT = 9559
-motion = Motion(IP,PORT)
-
+# motion = Motion(IP,PORT)
+motion = None
 def testSound(IP,PORT):
 
     motion.recordSound("record.wav","./sound/sound.wav")
@@ -37,12 +37,26 @@ def testHtml(str):
         motion.say(u'我听不懂')
     else:
         result = textTools.subReplace(result.decode('utf8'))
-        motion.say(result)
+        print result
+        # motion.say(result)
 
 def ask():
-    txt = testSound(IP,PORT)
-    # testHtml(u'中国的首都是哪里')
-    testHtml(txt)
+    # txt = testSound(IP,PORT)
+    testHtml(u'中国的首都是哪里')
+    # testHtml(txt)
+
+def chat():
+    os.chdir(globalVar.CHAT_PATH)
+    robot = aiml.Kernel()
+    robot.learn("std-startup.xml")
+    robot.respond('LOAD AIML TEST1')
+    while(True):
+        message = raw_input("Enter your message>> ")
+        if (message == 'quit'):
+            break
+        respond = robot.respond(message)
+        print respond
+
 
 def takePics():
     pics = motion.takePic()
@@ -54,6 +68,8 @@ if __name__ == '__main__':
     # global PORT
     # PORT = 9559
     # testSound(IP, PORT)
+    # print 'test'
     ask()
     # takePics()
+    # chat()
 

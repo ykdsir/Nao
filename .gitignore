@@ -103,5 +103,6 @@ ENV/
 .idea/
 face/
 face/*
-pics/pic.jpg
-sound/sound.wav
+pics/*
+sound/*
+hand/

@@ -79,6 +79,7 @@ class ReactToTouch(ALModule):
                 os.chdir('../')
             else:
                 naoVision.faceRecon(motion)
+
         #Subscribe again to the event
             memory.subscribeToEvent("MiddleTactilTouched","ReactToTouch","onheadTouched")
 
@@ -149,7 +150,7 @@ def main(ip, port):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ip", type=str, default="101.5.211.138",
+    parser.add_argument("--ip", type=str, default="101.5.209.193",
                         help="Robot ip address")
     parser.add_argument("--port", type=int, default=9559,
                         help="Robot port number")
